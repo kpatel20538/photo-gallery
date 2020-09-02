@@ -6,9 +6,9 @@ const { MongoClient } = require("mongodb");
   `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_URL}/${process.env.MONGO_DBNAME}?retryWrites=true&w=majority`
 ); */
 
-console.log(process.env.MONGO_URL)
 async function handle() {
   try {
+    console.log(process.env.MONGO_URL)
     /* await client.connect();
     await client.db("admin").command({ ping: 1 });
      */return { message: "Connected successfully to server" };
