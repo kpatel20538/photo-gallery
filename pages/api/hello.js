@@ -2,16 +2,16 @@
 
 const { MongoClient } = require("mongodb");
 
-/* const client = new MongoClient(
-  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_URL}/${process.env.MONGO_DBNAME}?retryWrites=true&w=majority`
-); */
+const client = new MongoClient(process.env.MONGO_URL);
 
 async function handle() {
   try {
-    console.log(process.env.MONGO_URL)
-    /* await client.connect();
-    await client.db("admin").command({ ping: 1 });
-     */return { message: "Connected successfully to server" };
+    await client.connect();
+    const pong = await client.db("photo-geoshare").command({ ping: 1 });
+    console.log(`logging: ${pong}`);
+    return {
+      message: "Connected successfully to server",
+    };
   } finally {
     /* await client.close(); */
   }
