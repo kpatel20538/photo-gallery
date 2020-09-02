@@ -1,7 +1,10 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from "react";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [data, setData] = useState();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,11 +18,19 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
         <div className={styles.grid}>
+        <button
+              onClick={async () => {
+                const response = await fetch("/api/hello");
+                setData(await response.text());
+              }}
+            >
+              Fetch: {JSON.stringify(data)}
+            </button>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h3>Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
@@ -56,10 +67,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
+  );
 }
