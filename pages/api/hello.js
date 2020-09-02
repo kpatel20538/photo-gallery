@@ -1,19 +1,19 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient(process.env.MONGO_URL);
+const client = new MongoClient(process.env.MONGO_URL, {
+  useUnifiedTopology: true,
+});
 
 async function handle() {
   try {
     await client.connect();
     const pong = await client.db("photo-geoshare").command({ ping: 1 });
-    console.log(`logging: ${pong}`);
+    console.log(`logging: ${JSON.stringify(pong)}`);
     return {
       message: "Connected successfully to server",
     };
   } finally {
-    /* await client.close(); */
+    await client.close();
   }
 }
 
