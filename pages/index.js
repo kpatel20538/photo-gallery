@@ -48,7 +48,7 @@ const Home = () => {
     const sub = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: base64ToUint8Array(
-        process.env.NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY
+        "BOz-goHN9n8wV3vavkJzE8EQ1QzAqPnfD1rRkOxK9hCpa4HvZ5NJyQRmg5QoWBz8LznTuI8TUgdwRGjIzw0nQ88"
       ),
     });
     // TODO: you should call your API to save subscription data on server in order to send web push notification from server
